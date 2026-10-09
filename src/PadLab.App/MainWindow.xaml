@@ -1,0 +1,48 @@
+<ui:FluentWindow x:Class="PadLab.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:PadLab.App"
+        xmlns:pages="clr-namespace:PadLab.App.Pages"
+        Title="{x:Static local:Strings.AppTitle}" Height="760" Width="1200" MinHeight="560" MinWidth="900"
+        ExtendsContentIntoTitleBar="True" WindowBackdropType="Mica" WindowCornerPreference="Round"
+        WindowStartupLocation="CenterScreen"
+        Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="{x:Static local:Strings.AppTitle}" />
+
+        <ui:NavigationView x:Name="Nav" Grid.Row="1" PaneDisplayMode="Left" OpenPaneLength="200"
+                           IsBackButtonVisible="Collapsed" IsPaneToggleVisible="True" FrameMargin="0">
+            <ui:NavigationView.Header>
+                <StackPanel Orientation="Horizontal" Margin="16,8,16,8">
+                    <TextBlock x:Name="DeviceNameText" Text="{x:Static local:Strings.NoDevice}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                    <TextBlock x:Name="ConnectionText" Margin="16,0,0,0" VerticalAlignment="Center"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                    <TextBlock x:Name="PollingText" Margin="16,0,0,0" FontFamily="Consolas" VerticalAlignment="Center"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+            </ui:NavigationView.Header>
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavDevice}" TargetPageType="{x:Type pages:DevicePage}" Icon="{ui:SymbolIcon XboxController24}" />
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavBasic}" TargetPageType="{x:Type pages:BasicInputPage}" Icon="{ui:SymbolIcon Games24}" />
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavDrift}" TargetPageType="{x:Type pages:DriftPage}" Icon="{ui:SymbolIcon Target24}" />
+                <ui:NavigationViewItem x:Name="PaddleItem" Content="{x:Static local:Strings.NavPaddle}" TargetPageType="{x:Type pages:PaddlePage}" Icon="{ui:SymbolIcon ArrowSwap24}" Visibility="Collapsed" />
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavVibration}" TargetPageType="{x:Type pages:VibrationPage}" Icon="{ui:SymbolIcon Pulse24}" />
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavIdle}" TargetPageType="{x:Type pages:IdlePage}" Icon="{ui:SymbolIcon Timer24}" />
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavPrecision}" TargetPageType="{x:Type pages:PrecisionPage}" Icon="{ui:SymbolIcon Ruler24}" />
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavHistory}" TargetPageType="{x:Type pages:HistoryPage}" Icon="{ui:SymbolIcon History24}" />
+            </ui:NavigationView.MenuItems>
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavDebug}" TargetPageType="{x:Type pages:DebugPage}" Icon="{ui:SymbolIcon Beaker24}" />
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavSettings}" TargetPageType="{x:Type pages:SettingsPage}" Icon="{ui:SymbolIcon Settings24}" />
+                <ui:NavigationViewItem Content="{x:Static local:Strings.NavAbout}" TargetPageType="{x:Type pages:AboutPage}" Icon="{ui:SymbolIcon Info24}" />
+            </ui:NavigationView.FooterMenuItems>
+        </ui:NavigationView>
+    </Grid>
+</ui:FluentWindow>

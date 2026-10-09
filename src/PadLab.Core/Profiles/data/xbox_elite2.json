@@ -1,0 +1,25 @@
+{
+  "kind": "XboxElite2",
+  "name": "Xbox Elite ワイヤレス コントローラー シリーズ 2",
+  "version": "1",
+  "paddleCount": 4,
+  "expectedCapabilities": ["Rumble", "ImpulseTriggers", "Battery"],
+  "buttons": [
+    { "id": "A", "label": "A", "category": "Standard" },
+    { "id": "B", "label": "B", "category": "Standard" },
+    { "id": "X", "label": "X", "category": "Standard" },
+    { "id": "Y", "label": "Y", "category": "Standard" },
+    { "id": "LB", "label": "LB", "category": "Standard" },
+    { "id": "RB", "label": "RB", "category": "Standard" },
+    { "id": "DUp", "label": "十字 上", "category": "Standard" },
+    { "id": "DDown", "label": "十字 下", "category": "Standard" },
+    { "id": "DLeft", "label": "十字 左", "category": "Standard" },
+    { "id": "DRight", "label": "十字 右", "category": "Standard" },
+    { "id": "L3", "label": "左スティック押し込み", "category": "Standard" },
+    { "id": "R3", "label": "右スティック押し込み", "category": "Standard" },
+    { "id": "Start", "label": "Menu", "category": "Standard" },
+    { "id": "Select", "label": "View", "category": "Standard" },
+    { "id": "Guide", "label": "Xbox", "category": "Standard" },
+    { "id": "Share", "label": "Share", "category": "Extended" }
+  ]
+}

@@ -1,0 +1,29 @@
+<Page ScrollViewer.CanContentScroll="False" x:Class="PadLab.App.Pages.PaddlePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:PadLab.App">
+    <StackPanel Margin="24">
+        <TextBlock Text="{x:Static local:Strings.NavPaddle}" FontSize="24" FontWeight="SemiBold" />
+        <TextBlock x:Name="NoDeviceText" Text="{x:Static local:Strings.NoDeviceHint}" Margin="0,8,0,0" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+        <StackPanel x:Name="Body" Margin="0,12,0,0">
+            <TextBlock Text="{Binding Guide}" FontSize="16" TextWrapping="Wrap" />
+            <TextBlock Text="{Binding Status}" Margin="0,8,0,0" TextWrapping="Wrap" FontFamily="Consolas, Cascadia Mono" />
+            <WrapPanel Margin="0,12,0,0">
+                <ui:Button Content="{x:Static local:Strings.PaddleBegin}" Command="{Binding BeginCommand}" Margin="0,0,8,0" />
+                <ui:Button Content="{x:Static local:Strings.PaddleNext}" Command="{Binding NextCommand}" Margin="0,0,8,0" Appearance="Primary" />
+                <ui:Button Content="{x:Static local:Strings.PaddleRetry}" Command="{Binding RetryCommand}" />
+            </WrapPanel>
+            <TextBlock Text="{x:Static local:Strings.PaddleListTitle}" FontWeight="SemiBold" Margin="0,20,0,4" />
+            <ItemsControl ItemsSource="{Binding Mappings}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontFamily="Consolas, Cascadia Mono" Margin="0,2" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Text="{x:Static local:Strings.PaddleDiffTitle}" FontWeight="SemiBold" Margin="0,20,0,4" />
+            <TextBlock Text="{Binding Diff}" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+        </StackPanel>
+    </StackPanel>
+</Page>

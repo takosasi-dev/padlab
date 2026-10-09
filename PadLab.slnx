@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PadLab.App/PadLab.App.csproj" />
+    <Project Path="src/PadLab.Core/PadLab.Core.csproj" />
+    <Project Path="src/PadLab.Input/PadLab.Input.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PadLab.Core.Tests/PadLab.Core.Tests.csproj" />
+  </Folder>
+</Solution>

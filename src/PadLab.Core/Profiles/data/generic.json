@@ -1,0 +1,29 @@
+{
+  "kind": "Generic",
+  "name": "汎用ゲームパッド",
+  "version": "1",
+  "paddleCount": 0,
+  "expectedCapabilities": [],
+  "buttons": [
+    { "id": "DUp", "label": "十字 上", "category": "Standard" },
+    { "id": "DDown", "label": "十字 下", "category": "Standard" },
+    { "id": "DLeft", "label": "十字 左", "category": "Standard" },
+    { "id": "DRight", "label": "十字 右", "category": "Standard" },
+    { "id": "Generic1", "label": "ボタン 1", "category": "Standard" },
+    { "id": "Generic2", "label": "ボタン 2", "category": "Standard" },
+    { "id": "Generic3", "label": "ボタン 3", "category": "Standard" },
+    { "id": "Generic4", "label": "ボタン 4", "category": "Standard" },
+    { "id": "Generic5", "label": "ボタン 5", "category": "Standard" },
+    { "id": "Generic6", "label": "ボタン 6", "category": "Standard" },
+    { "id": "Generic7", "label": "ボタン 7", "category": "Standard" },
+    { "id": "Generic8", "label": "ボタン 8", "category": "Standard" },
+    { "id": "Generic9", "label": "ボタン 9", "category": "Standard" },
+    { "id": "Generic10", "label": "ボタン 10", "category": "Standard" },
+    { "id": "Generic11", "label": "ボタン 11", "category": "Standard" },
+    { "id": "Generic12", "label": "ボタン 12", "category": "Standard" },
+    { "id": "Generic13", "label": "ボタン 13", "category": "Standard" },
+    { "id": "Generic14", "label": "ボタン 14", "category": "Standard" },
+    { "id": "Generic15", "label": "ボタン 15", "category": "Standard" },
+    { "id": "Generic16", "label": "ボタン 16", "category": "Standard" }
+  ]
+}

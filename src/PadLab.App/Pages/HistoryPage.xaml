@@ -1,0 +1,56 @@
+<Page ScrollViewer.CanContentScroll="False" x:Class="PadLab.App.Pages.HistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:PadLab.App">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="B2V" />
+    </Page.Resources>
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="{x:Static local:Strings.NavHistory}" FontSize="24" FontWeight="SemiBold" />
+            <TextBlock Text="{Binding Folder}" Margin="0,4,0,0" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            <WrapPanel Margin="0,8,0,0">
+                <ui:Button Content="{x:Static local:Strings.HistRefresh}" Command="{Binding RefreshCommand}" Margin="0,0,8,4" />
+                <ui:Button Content="{x:Static local:Strings.HistExportJson}" Command="{Binding ExportJsonCommand}" Margin="0,0,8,4" />
+                <ui:Button Content="{x:Static local:Strings.HistExportText}" Command="{Binding ExportTextCommand}" Margin="0,0,8,4" />
+                <ui:Button Content="{x:Static local:Strings.HistReportPng}" Command="{Binding ReportPngCommand}" Margin="0,0,8,4" />
+                <ui:Button Content="{x:Static local:Strings.HistScreenshot}" Click="Screenshot_Click" Margin="0,0,8,4" />
+            </WrapPanel>
+            <TextBlock Text="{Binding Message}" Margin="0,4,0,0" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="0,12,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <TextBlock Text="{x:Static local:Strings.HistEmpty}" TextWrapping="Wrap" VerticalAlignment="Top"
+                           Visibility="{Binding IsEmpty, Converter={StaticResource B2V}}"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ui:ListView ItemsSource="{Binding Items}" SelectedItem="{Binding Selected, Mode=TwoWay}">
+                    <ui:ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Display}" FontFamily="Consolas, Cascadia Mono" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                        </DataTemplate>
+                    </ui:ListView.ItemTemplate>
+                </ui:ListView>
+            </Grid>
+            <TabControl Grid.Column="2">
+                <TabItem Header="{x:Static local:Strings.HistTabSummary}">
+                    <TextBox Text="{Binding Summary, Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto" FontFamily="Consolas, Cascadia Mono" BorderThickness="0" />
+                </TabItem>
+                <TabItem Header="{x:Static local:Strings.HistTabJson}">
+                    <TextBox Text="{Binding Json, Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontFamily="Consolas, Cascadia Mono" BorderThickness="0" />
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Page>

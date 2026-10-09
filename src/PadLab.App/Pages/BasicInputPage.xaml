@@ -1,0 +1,67 @@
+<Page ScrollViewer.CanContentScroll="False" x:Class="PadLab.App.Pages.BasicInputPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:PadLab.App"
+      xmlns:r="clr-namespace:PadLab.App.Rendering"
+      xmlns:vm="clr-namespace:PadLab.App.ViewModels"
+      Title="{x:Static local:Strings.NavBasic}"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Page.Resources>
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <r:SkiaCanvasView x:Name="Canvas" />
+            <TextBlock x:Name="NoDeviceText" Text="{x:Static local:Strings.NoDevice}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+        </Grid>
+        <Grid Grid.Column="1" Margin="16,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{x:Static local:Strings.BasicHint}" TextWrapping="Wrap" Margin="0,0,0,8"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            <StackPanel Grid.Row="1" Margin="0,0,0,8">
+                <TextBlock Text="{Binding Polling}" FontFamily="Consolas, Cascadia Mono" FontSize="20" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <TextBlock Text="{x:Static local:Strings.MaxReachTitle}" FontWeight="SemiBold" Margin="0,8,0,2" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <TextBlock Text="{Binding LeftMax}" FontFamily="Consolas, Cascadia Mono" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <TextBlock Text="{Binding RightMax}" FontFamily="Consolas, Cascadia Mono" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <TextBlock Text="{Binding LeftTriggerMax}" FontFamily="Consolas, Cascadia Mono" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <TextBlock Text="{Binding RightTriggerMax}" FontFamily="Consolas, Cascadia Mono" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            </StackPanel>
+            <DockPanel Grid.Row="2" Margin="0,0,0,4">
+                <TextBlock Text="{Binding Progress}" DockPanel.Dock="Right" FontFamily="Consolas, Cascadia Mono" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <TextBlock Text="{x:Static local:Strings.ChecklistTitle}" FontWeight="SemiBold" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            </DockPanel>
+            <ui:ListView Grid.Row="3" ItemsSource="{Binding Items}" SelectionMode="Single">
+                <ui:ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type vm:ChecklistItem}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="24" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Mark}" FontFamily="Consolas, Cascadia Mono" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                            <TextBlock Grid.Column="1" Text="{Binding Label}" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                            <TextBlock Grid.Column="2" Text="{Binding Category}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                        </Grid>
+                    </DataTemplate>
+                </ui:ListView.ItemTemplate>
+            </ui:ListView>
+            <Border Grid.Row="4" Margin="0,8,0,0" Padding="12" CornerRadius="6" Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    Visibility="{Binding AllDone, Converter={StaticResource BoolToVis}}">
+                <TextBlock Text="{x:Static local:Strings.AllButtonsDone}" FontWeight="SemiBold" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

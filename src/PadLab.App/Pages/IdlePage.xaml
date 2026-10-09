@@ -1,0 +1,81 @@
+<Page ScrollViewer.CanContentScroll="False" x:Class="PadLab.App.Pages.IdlePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:PadLab.App"
+      Title="{x:Static local:Strings.NavIdle}"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Page.Resources>
+    <Grid>
+        <!-- 設定 -->
+        <StackPanel Margin="24" Visibility="{Binding IsSetup, Converter={StaticResource BoolToVis}}">
+            <TextBlock Text="{x:Static local:Strings.NavIdle}" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,8" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <TextBlock Text="{x:Static local:Strings.IdleGuide}" TextWrapping="Wrap" MaxWidth="640" HorizontalAlignment="Left" Margin="0,0,0,16" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            <TextBlock Text="{x:Static local:Strings.IdleMinutesLabel}" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <StackPanel Orientation="Horizontal" Margin="0,4,0,16">
+                <Slider Width="320" Minimum="1" Maximum="180" Value="{Binding Minutes}" IsSnapToTickEnabled="True" TickFrequency="1" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Minutes, StringFormat={}{0,4:0} 分}" FontFamily="Consolas, Cascadia Mono" FontSize="18" Margin="16,0,0,0" VerticalAlignment="Center"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            </StackPanel>
+            <Button Content="{x:Static local:Strings.IdleStart}" Command="{Binding StartCommand}" IsEnabled="{Binding CanStart}" HorizontalAlignment="Left" />
+            <TextBlock Text="{Binding Summary}" Margin="0,12,0,0" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+        </StackPanel>
+
+        <!-- 暗転待機 -->
+        <Grid Background="#0A0A0A" Visibility="{Binding IsWaiting, Converter={StaticResource BoolToVis}}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{x:Static local:Strings.IdleWaiting}" FontSize="18" HorizontalAlignment="Center" Foreground="#8A909A" />
+                <TextBlock Text="{Binding Elapsed}" FontFamily="Consolas, Cascadia Mono" FontSize="48" HorizontalAlignment="Center" Margin="0,8" Foreground="#8A909A" />
+                <TextBlock Text="{Binding EventCount}" FontFamily="Consolas, Cascadia Mono" FontSize="20" HorizontalAlignment="Center" Foreground="#8A909A" />
+                <Button Content="{x:Static local:Strings.IdleStop}" Command="{Binding StopCommand}" HorizontalAlignment="Center" Margin="0,24,0,0" />
+            </StackPanel>
+        </Grid>
+
+        <!-- 結果 -->
+        <Grid Margin="24" Visibility="{Binding IsResult, Converter={StaticResource BoolToVis}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{x:Static local:Strings.IdleResultTitle}" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,8" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <TextBlock Grid.Row="1" Text="{Binding Note}" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <TextBlock Grid.Row="2" Text="{Binding Summary}" TextWrapping="Wrap" FontSize="15" Margin="0,0,0,12" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <TextBlock Grid.Row="3" Text="{x:Static local:Strings.IdleEventsTitle}" FontWeight="SemiBold" Margin="0,0,0,4" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <Grid Grid.Row="4">
+                <ui:ListView ItemsSource="{Binding Events}">
+                    <ui:ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{x:Static local:Strings.IdleColTime}" Width="110">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate><TextBlock Text="{Binding Time}" FontFamily="Consolas, Cascadia Mono" Foreground="{DynamicResource TextFillColorPrimaryBrush}" /></DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static local:Strings.IdleColKind}" Width="140">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate><TextBlock Text="{Binding Kind}" Foreground="{DynamicResource TextFillColorPrimaryBrush}" /></DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{x:Static local:Strings.IdleColDetail}" Width="360">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate><TextBlock Text="{Binding Detail}" Foreground="{DynamicResource TextFillColorPrimaryBrush}" /></DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ui:ListView.View>
+                </ui:ListView>
+                <TextBlock x:Name="NoEventsText" Text="{x:Static local:Strings.IdleNoEvents}" Margin="8,32,8,8" VerticalAlignment="Top" IsHitTestVisible="False"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            </Grid>
+            <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,12,0,0">
+                <Button Content="{x:Static local:Strings.IdleAgain}" Command="{Binding AgainCommand}" />
+                <TextBlock Text="{x:Static local:Strings.ReferenceOnly}" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

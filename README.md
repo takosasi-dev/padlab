@@ -1,5 +1,11 @@
 # PadLab
 
+> **このソフトは [PadSight](https://github.com/takosasi-dev/padsight) に統合しました(2026-11-17)。**
+> PadLab の診断(ボタンの網羅・パドル・スティックのドリフトと精度テスト・トリガー・振動・放置監視・履歴とレポート)は、PadSight のメインの画面の「診断」タブで使えます。
+> このリポジトリは更新を止め、アーカイブにしています。
+>
+> **PadLab has been merged into [PadSight](https://github.com/takosasi-dev/padsight) (2026-11-17).** Its diagnostics live in PadSight's 診断 (diagnostics) tab. This repository is archived and no longer updated.
+
 Windows 向けのゲームコントローラー診断ツールです。Xbox / DualShock 4 / DualSense (Edge) / Switch Pro / 汎用パッドの入力を可視化し、ボタン反応・スティックのドリフト・チャタリング・放置監視・精度テストの結果を記録します。
 単一 exe (自己完結、.NET ランタイム不要) で動作し、**既定で一切ネットワーク通信を行いません**。
 表示・記録される値は**参考値であり、故障の確定診断ではありません**。
